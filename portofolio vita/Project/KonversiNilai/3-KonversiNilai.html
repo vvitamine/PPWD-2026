@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Konversi Nilai Mahasiswa</title>
+        <style>
+            body { 
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; padding: 40px; 
+                background-image: url('NilaiAkhir.jpg');background-size: cover; background-position: center;
+                background-attachment: fixed;
+            }
+            
+            .container { 
+                background: rgba(243, 236, 222, 0.95);
+                padding: 35px; border-radius: 15px; max-width: 450px; margin: auto; border: 3px solid #6b7a99; 
+                box-shadow: 10px 10px 0px #7988a9; 
+            }
+
+            h2 {
+                color: #4a5775;font-family: 'Arial Black', Impact, sans-serif; letter-spacing: 1px; 
+                text-transform: uppercase; margin-top: 0;
+            }
+
+            input { 
+                padding: 12px; width: 80%; margin: 15px 0; border: 2px solid #7988a9; border-radius: 8px; 
+                font-size: 16px; background-color: #faf7f2;color: #4a5775;font-weight: bold;outline: none;
+            }
+
+            input:focus {
+                border-color: #4a5775;
+            }
+
+            button { 
+                padding: 12px 25px; 
+                background: #7988a9; color: #f3ecde; border: 2px solid #4a5775; 
+                border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold;text-transform: uppercase;
+                box-shadow: 4px 4px 0px #4a5775;transition: all 0.2s ease-in-out;
+            }
+
+            button:hover { 
+                background: #6b7a99; transform: translate(2px, 2px);box-shadow: 2px 2px 0px #4a5775;
+            }
+
+            button:active {
+                transform: translate(4px, 4px); box-shadow: 0px 0px 0px #4a5775;
+            }
+
+            .hasil { 
+                margin-top: 25px; padding: 15px; background: #e6dfcd; border-radius: 10px; 
+                border: 2px dashed #7988a9; color: #4a5775; font-size: 16px;line-height: 1.5;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <h2>Konversi Nilai Mahasiswa</h2>
+            
+            <input type="number" id="inputNilai" placeholder="Masukkan nilai (0-100)" min="0" max="100">
+            <br>
+            
+            <button onclick="konversiNilai()">Cek Grade</button>
+
+            <div class="hasil" id="idTarget">
+                <p>💡 Masukkan nilai di atas lalu klik tombol</p>
+            </div>
+        </div>
+
+        <script>
+            function konversiNilai() {
+                let nilai = parseFloat(document.getElementById('inputNilai').value);
+                
+                if (isNaN(nilai)) {
+                    document.getElementById('idTarget').innerHTML = "⚠️ Masukkan nilai dengan benar!";
+                    return;
+                }
+
+                if (nilai < 0 || nilai > 100) {
+                    document.getElementById('idTarget').innerHTML = "❌ Nilai harus antara 0-100!";
+                    return;
+                }
+
+                let grade = "";
+                let keterangan = "";
+
+                if (nilai >= 90 && nilai <= 100) {
+                    grade = "A";
+                    keterangan = "Keren bangett!";
+                } else if (nilai >= 80 && nilai <= 89) {
+                    grade = "B";
+                    keterangan = "Bagus, tingkatin lagi yaa!";
+                } else if (nilai >= 70 && nilai <= 79) {
+                    grade = "C";
+                    keterangan = " Semangat terus tingkatin nilainya!";
+                } else if (nilai >= 60 && nilai <= 69) {
+                    grade = "D";
+                    keterangan = "Kurang, yuk bisa yuk belajar lagi!";
+                } else {
+                    grade = "E";
+                    keterangan = "Semangat terus belajarnya buat remidial yaa!";
+                }
+
+                document.getElementById('idTarget').innerHTML = 
+                    "Nilai Anda: <strong>" + nilai + "</strong><br>" +
+                    "Grade: <strong>" + grade + "</strong><br>" +
+                    "Keterangan: " + keterangan;
+            }
+        </script>
+    </body>
+</html>
